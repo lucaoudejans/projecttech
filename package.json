@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/lucaoudejans/projecttech/issues"
   },
-  "homepage": "https://github.com/lucaoudejans/projecttech#readme"
+  "homepage": "https://github.com/lucaoudejans/projecttech#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
