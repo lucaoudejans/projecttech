@@ -8,6 +8,7 @@ app.use(express.static('static'))
 
 express()
 .use(express.static('static'))
+.use(express.urlencoded({extended: true}))
 .set('view.engine', 'ejs')
 .set('views', 'view')
 
@@ -17,7 +18,7 @@ app.get('/', (reg, res) => {
 
 app.get('/home/:user/', (req, res) => {
     console.log(`Input from ${req.params.user}`)
-    res.send('<img src="/images/kat.jpeg" width="150"><h1>Hello World!' + req.params.user + '</h1>')
+    res.send('<img src="/images/kat.jpeg" width="150"><h1>Hello ' + req.params.user + '</h1>')
 })
 
 app.listen(port, () => {

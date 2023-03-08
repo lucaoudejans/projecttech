@@ -1,0 +1,20 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+body{
+    background-color: #fef2ca;;
+}
+
+/* nav styling */
+header nav{
+    background-color: #e0815e;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3em;
+    color: rgb(255, 233, 229);
+}
