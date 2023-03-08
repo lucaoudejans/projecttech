@@ -1,16 +1,20 @@
 const express = require (`express`)
 const app = express()
 let ejs = require('ejs')
+let people = ['geddy', 'neil', 'alex'];
+let html = ejs.render('<%= people.join(", "); %>', {people: people});
 
 const port = 4000
 
 app.use(express.static('static'))
+
 
 express()
 .use(express.static('static'))
 .use(express.urlencoded({extended: true}))
 .set('view.engine', 'ejs')
 .set('views', 'view')
+
 
 app.get('/', (reg, res) => {
     res.send('<img src="/images/kat.jpeg" width="150">Hello world!')

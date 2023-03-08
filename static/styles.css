@@ -1,20 +1,90 @@
+:root {
+    --header-height: 3.5em;
+    --background-color: #fef2ca;
+    --header-color: #e0815e;
+    --font-family: 'FilsonPro';
+}
+
+/* general */
 *{
     padding: 0;
     margin: 0;
     list-style: none;
 }
 
+/* fonts */
+@font-face {
+    font-family: 'FilsonPro';
+    src: url('../fonts/FilsonProRegular.otf');
+    font-style: normal;
+    font-weight: 300;
+  }
+
 body{
-    background-color: #fef2ca;;
+    background-color: var(--background-color);
 }
 
 /* nav styling */
 header nav{
-    background-color: #e0815e;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: var(--header-color);
+    font-family: var(--font-family);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 3em;
-    color: rgb(255, 233, 229);
+    height: var(--header-height);
 }
+
+nav img{
+    height: 9em;
+    margin-top: 3.5em;
+}
+
+/* main styling */
+
+form{
+    background-color: white;
+    margin-top: 6em;
+    margin-right: 12em;
+    margin-left: 12em;
+    border-radius: 2em;
+    border: 0.3em solid #ebeaea;
+    height: 40em;
+}
+
+section:nth-of-type(1){
+    display: flex;
+    justify-content: center;
+    height: 11em;
+    align-items: center;
+    font-family: var(--font-family);
+}
+
+h3{
+    font-family: var(--font-family);
+}
+
+section:nth-of-type(2){
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+}
+
+section .ondertekst{
+    font-size: 0.6em;
+    font-family: var(--font-family);
+}
+
+section:nth-of-type(2){
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+section:nth-of-type(3){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
