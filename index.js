@@ -13,16 +13,9 @@ express()
 .set('view.engine', 'ejs')
 .set('views', 'view')
 
+// Templating engine
+app.set('view engine', 'ejs')
 
-app.get('/', (reg, res) => {
-    res.send('<img src="/images/kat.jpeg" width="150">Hello world!')
-})
-
-app.get('/home/:user/', (req, res) => {
-    console.log(`Input from ${req.params.user}`)
-    res.send('<img src="/images/kat.jpeg" width="150"><h1>Hello ' + req.params.user + '</h1>')
-})
-
-app.listen(port, () => {
-    console.log(`Hoi on port ${port}`)
+app.use((reg, res) => {
+    res.status(404).send("404, error")
 })
