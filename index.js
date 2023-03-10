@@ -14,6 +14,12 @@ const uri = process.env.MONGODB_URI
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 const dbName = 'testdatab'
 
+client.connect(err => {
+    const collection = client.db("test").collection("devices");
+    // perform actions on the collection object
+    client.close();
+  });
+
 // beide collections aanroepen
 const db = client.db(dbName)
 const form = db.collection('form')
