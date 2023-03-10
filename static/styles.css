@@ -20,7 +20,7 @@ body{
     height: 60em;
 }
 
-/* nav styling */
+/* header styling */
 header nav{
     background-color: var(--header-color);
     font-family: var(--font-family);
