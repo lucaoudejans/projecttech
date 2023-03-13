@@ -113,4 +113,30 @@ main button{
     cursor: pointer;
 }
 
+/* result page */
+.petpicture{
+    width: 60%;
+}
+
+.results{
+    background-color: white;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    margin-top: 5em;
+    padding: 2em;
+}
+
+.info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100%;
+    width: 100%;
+    align-items: center;
+    border: 0.5em solid var(--header-color);
+    margin-bottom: 2em;
+}
+
 
