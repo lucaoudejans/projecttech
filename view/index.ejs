@@ -1,119 +1,73 @@
 <!DOCTYPE html>
 <html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>PawfectMatch</title>
+<%- include ('head.ejs') %>
 
-    <link href="https://fonts.cdnfonts.com/css/yusei-magic" rel="stylesheet">
-    <link rel="stylesheet" href="../static/styles.css">
+<%- include ('header.ejs') %>
 
-</head>
-
-<body>
-    <header>
-        <nav>
-            <img src="../static/images/logo.png" alt="logo PawfectMatch">
-        </nav>
-    </header>
-
-    <main>
-    <form action="#">
-        <section>
-            <h2>Find your perfect adoptable match!</h2>
-        </section>
-            
+<main>
+    <form action="#" method="post">
 
         <section>
-            <h3>I'm looking for a...</h3>
+            <h1>Find your perfect adoptable match!</h1>
+        </section>    
+
+        <section>
+            <h2>I'm looking for a...</h2>
             <p class="ondertekst">(multiple answers are possible)</p>
             <ul>
-                <li><input class="box" type="checkbox" id="cat"/>
+                <li><input class="box" type="checkbox" name ="pet" id="cat"/>
                     <label for="cat">Cat</label>
                 </li>
 
-                <li><input class="box" type="checkbox" id="dog"/>
+                <li><input class="box" type="checkbox" name ="pet" id="dog"/>
                     <label for="dog">Dog</label>
                 </li>
 
-                <li><input class="box" type="checkbox" id="Bunny"/>
+                <li><input class="box" type="checkbox" name ="pet" id="Bunny"/>
                     <label for="bunny">Bunny</label>
-                </li>
-
-                <li><input class="box" type="checkbox" id="guinea-pig"/>
-                    <label for="guinea-pig">Guinea-pig</label>
-                </li>
-
-                <li><input class="box" type="checkbox" id="hamster"/>
-                    <label for="hamster">Hamster</label>
-                </li>
-
-                <li><input class="box" type="checkbox" id="bird"/>
-                    <label for="bird">Bird</label>
                 </li>
             </ul>
         </section>
 
         <section>
-            <h3>The age must be...</h3>
+            <h2>The age must be...</h2>
             <p class="ondertekst">(multiple answers are possible)</p>
             <ul>
-                <li><input class="box" type="checkbox" id="0-2"/>
+                <li><input class="box" type="checkbox" name="age" id="0-2"/>
                     <label for="0-2">0 to 2 years</label>
                 </li>
 
-                <li><input class="box" type="checkbox" id="2-5"/>
-                    <label for="2-5">2 to 5 years</label>
-                </li>
-
-                <li><input class="box" type="checkbox" id="5-10"/>
-                    <label for="5-10">5 to 10 years</label>
-                </li>
-
-                <li><input class="box" type="checkbox" id="10"/>
-                    <label for="10">10 + years</label>
+                <li><input class="box" type="checkbox" name="age" id="2-5"/>
+                    <label for="2-5">2 to 5+ years</label>
                 </li>
             </ul>
         </section>
 
         <section>
-            <h3>I want the pet to be...</h3>
+           <h2>I want the pet to be...</h2>
             <p class="ondertekst">(multiple answers are possible)</p>
             <ul>
-                <li><input class="box" type="checkbox" id="inquisitive"/>
+                <li><input class="box" type="checkbox" name="trait" id="inquisitive"/>
                     <label for="inquisitive">inquisitive</label>
                 </li>
 
-                <li><input class="box" type="checkbox" id="playful"/>
+                <li><input class="box" type="checkbox" name="trait" id="playful"/>
                     <label for="playful">playful</label>
                 </li>
 
-                <li><input class="box" type="checkbox" id="friendly"/>
+                <li><input class="box" type="checkbox" name="trait" id="friendly"/>
                     <label for="friendly">friendly</label>
-                </li>
-
-                <li><input class="box" type="checkbox" id="detached"/>
-                    <label for="detached">detached</label>
-                </li>
-
-                <li><input class="box" type="checkbox" id="naughty"/>
-                    <label for="naughty">naughty</label>
                 </li>
             </ul>
         </section>
 
         <section>
-            <button href="#">see my PawfectMatch!</button>
+            <button type="submit" id="submit" name="submit">see my PawfectMatch!</button>
         </section>
+
     </form>    
     </main>
-
-    <footer>
-
-    </footer>
-
-<script src="/index.js"></script>
+    <script src="../index.js"></script>
 </body>
 </html>

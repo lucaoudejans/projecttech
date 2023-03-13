@@ -21,11 +21,6 @@ client.connect(err => {
     client.close();
   });
 
-// calling both collections 
-const db = client.db(dbName)
-const form = db.collection('form')
-const pets = db.collection('pets')
-
 // import ejs view engine 
 app.set('view engine', 'ejs')
 
@@ -58,4 +53,88 @@ app.listen(port, () => {
   console.log(`Server listening on port ${port}`)
 });
 
-// crud 2x toepassen!! (find=read)
+// calling both collections 
+const db = client.db(dbName)
+const pets = db.collection('pets')[
+    {
+        name: 'Bibi',
+        sort: 'cat',
+        age: '0-2',
+        personality: ['inquisitive', 'friendly']
+    },
+    {
+        name: 'Dotty',
+        sort: 'cat',
+        age: '2-5',
+        personality: ['playful', 'friendly']
+    },
+    {
+        name: 'Benji',
+        sort: 'dog',
+        age: '0-2',
+        personality: ['playful', 'inquisitive']
+    },
+    {
+        name: 'Lola',
+        sort: 'dog',
+        age: '2-5',
+        personality: ['friendly', 'playful']
+    },
+    {
+        name: 'Luna',
+        sort: 'bunny',
+        age: '0-2',
+        personality: ['friendly', 'playful']
+    },
+    {
+        name: 'Pipi',
+        sort: 'bunny',
+        age: '2-5',
+        personality: ['inquisitive', 'playful']
+    }
+]
+
+// dingen uitproberen
+// async function createlisting()
+
+// // when the form is submitted, a function will check through the arrays for matches
+// const filter = document.querySelector('filter');
+
+// form.addEventListener('submit', function (event) {
+//     event.prefentDefault();
+
+//     const answer = {
+//         sort: [],
+//         age: [],
+//         personality: []
+//     };
+
+// // getting the answers of the user
+//     const sortInputs = document.querySelectorAll('input[type="checkbox"][name="sort"]:checked');
+//     sortInputs.forEach(input => answer.sort.push(input.id));
+
+//     const ageInputs = document.querySelectorAll('input[type="checkbox"][name="age"]:checked');
+//     ageInputs.forEach(input => answers.age.push(input.id));
+
+//     const personalityInputs = document.querySelectorAll('input[type="checkbox"][name="personality"]:checked');
+//     personalityInputs.forEach(input => answers.personality.push(input.id));
+
+// // find a match
+// const pets = pets.find(pet => {
+//     const isTypeMatch = answers.type.includes(pet.type);
+//     const isAgeMatch = answers.age.includes(pet.age);
+//     const isPersonalityMatch = pet.personality.every(trait => answers.personality.includes(trait));
+//     return isSortMatch && isAgeMatch && isPersonalityMatch;
+//   });
+
+// // display the match
+//     const matchResult = document.getElementById('match-result');
+//     if (match) {
+//     matchResult.textContent = `Your PawfectMatch is ${match.name}!`;
+//     } else {
+//     matchResult.textContent = 'Sorry, we could not find a match for your criteria.';
+//     }
+
+
+
+
