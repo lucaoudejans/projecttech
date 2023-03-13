@@ -13,11 +13,15 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.MONGODB_URI
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 const dbName = 'testdatab'
+const database = client.db(dbName);
+const submission = database.collection('form');
+const animal = database.collection('pets');
 
 // trying to fix error in terminal
 client.connect(err => {
-    const collection = client.db("test").collection("devices");
+    const collection = client.db("testdatab").collection("form");
     // perform actions on the collection object
+    console.log('error')
     client.close();
   });
 
@@ -37,103 +41,73 @@ app.set('view engine', 'ejs')
 app.set('views', 'view')
 
 // all pages
-
 // calling ejs and returning in html
 app.get('/', function(req, res) {
     res.render('index.ejs');
   });
 
-// when an user is calling an unknow file, an error occurs
-app.use((req, res) => {
-  res.status(404).send("404, error")
+// the data from the form will be showed in mongodb whenever someone fills in the form
+app.post('/result', async (req, res, next) => {
+    try {
+        const petList = {
+            soort: req.body.soort,
+            age: req.body.age,
+            trait: req.body.trait
+        }
+        await submission.insertOne(petList)
+
+        console.log(req.body)
+
+        // based on the answers the user will be paired with an animal
+        let resultPet = await animal.find(
+            {
+                $and: [
+                    { soort: req.body.soort},
+                    { age: req.body.age},
+                ]
+            }
+        ).toArray()
+
+
+        // when the answers match with an animal, it shows. otherwise there is an error
+        if (resultPet) {
+        
+        // an array is made based on the checked traits and will be showed seperately. flat makes it easier to filter through the erray
+            if(req.body.trait) {
+                // Zet de waarde van req.body.trait 
+                [req.body.trait].flat().forEach(trait => {
+                    resultPet = resultPet.filter(pet => {
+                        return pet.trait.includes(trait)
+                    })
+                })
+            }
+            // to prevent empty results in the database
+            if(resultPet.length  < 1) {
+                res.send('no results')
+                return false;
+            }
+            // ejs page loads in with the results
+            res.render('result', {resultPet, petList})
+        }
+        else {
+            res.send('no results')
+        }
+    // when errors occur, the server won't crash but will be displayed in the console.
+    } catch (err) {
+        console.log(err.stack)
+    }
 })
 
-// 4000 shows in the console to let know it works
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`)
-});
+// when an user is calling an unknow file, an error occurs
+app.use((req, res) => {
+    res.status(404).send("404, error")
+  })
+  
+  // 4000 shows in the console to let know it works
+  app.listen(port, () => {
+    console.log(`Server listening on port ${port}`)
+  });
 
-// calling both collections 
-const db = client.db(dbName)
-const pets = db.collection('pets')[
-    {
-        name: 'Bibi',
-        sort: 'cat',
-        age: '0-2',
-        personality: ['inquisitive', 'friendly']
-    },
-    {
-        name: 'Dotty',
-        sort: 'cat',
-        age: '2-5',
-        personality: ['playful', 'friendly']
-    },
-    {
-        name: 'Benji',
-        sort: 'dog',
-        age: '0-2',
-        personality: ['playful', 'inquisitive']
-    },
-    {
-        name: 'Lola',
-        sort: 'dog',
-        age: '2-5',
-        personality: ['friendly', 'playful']
-    },
-    {
-        name: 'Luna',
-        sort: 'bunny',
-        age: '0-2',
-        personality: ['friendly', 'playful']
-    },
-    {
-        name: 'Pipi',
-        sort: 'bunny',
-        age: '2-5',
-        personality: ['inquisitive', 'playful']
-    }
-]
-
-// dingen uitproberen
-// async function createlisting()
-
-// // when the form is submitted, a function will check through the arrays for matches
-// const filter = document.querySelector('filter');
-
-// form.addEventListener('submit', function (event) {
-//     event.prefentDefault();
-
-//     const answer = {
-//         sort: [],
-//         age: [],
-//         personality: []
-//     };
-
-// // getting the answers of the user
-//     const sortInputs = document.querySelectorAll('input[type="checkbox"][name="sort"]:checked');
-//     sortInputs.forEach(input => answer.sort.push(input.id));
-
-//     const ageInputs = document.querySelectorAll('input[type="checkbox"][name="age"]:checked');
-//     ageInputs.forEach(input => answers.age.push(input.id));
-
-//     const personalityInputs = document.querySelectorAll('input[type="checkbox"][name="personality"]:checked');
-//     personalityInputs.forEach(input => answers.personality.push(input.id));
-
-// // find a match
-// const pets = pets.find(pet => {
-//     const isTypeMatch = answers.type.includes(pet.type);
-//     const isAgeMatch = answers.age.includes(pet.age);
-//     const isPersonalityMatch = pet.personality.every(trait => answers.personality.includes(trait));
-//     return isSortMatch && isAgeMatch && isPersonalityMatch;
-//   });
-
-// // display the match
-//     const matchResult = document.getElementById('match-result');
-//     if (match) {
-//     matchResult.textContent = `Your PawfectMatch is ${match.name}!`;
-//     } else {
-//     matchResult.textContent = 'Sorry, we could not find a match for your criteria.';
-//     }
 
 
 
