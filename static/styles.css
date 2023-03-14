@@ -35,7 +35,7 @@ nav img{
     margin-top: 3.5em;
 }
 
-/* main styling */
+/* index.ejs main styling */
 
 form{
     background-color: rgb(255, 255, 255);
@@ -113,7 +113,7 @@ main button{
     cursor: pointer;
 }
 
-/* result page */
+/* result.ejs main styling */
 .petpicture{
     width: 60%;
 }
@@ -137,6 +137,13 @@ main button{
     align-items: center;
     border: 0.5em solid var(--header-color);
     margin-bottom: 2em;
+}
+
+/* 404page.ejs main styling */
+h1{
+    font-family: var(--font-family);
+    margin-top: 2em;
+    margin-left: 1em;
 }
 
 
