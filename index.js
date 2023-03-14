@@ -99,22 +99,16 @@ app.post('/result', async (req, res, next) => {
     }
     
 })
-
-
-// when an user is calling an unknow file, an error occurs
-// app.use((req, res) => {
-//     res.status(404).send("404, error")
-//   })
-
-app.use(function (req, res, next) {
-    res.status(404).render('view/404page')
-  })
   
-  // 4000 shows in the console to let know it works
+// 4000 shows in the console to let know it works
   app.listen(port, () => {
     console.log(`Server listening on port ${port}`)
   });
 
+// when an user is calling an unknow url, an error occurs
+  app.use(function (req, res, next) {
+    res.status(404).render('404page')
+})
 
 
 
