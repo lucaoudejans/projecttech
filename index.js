@@ -17,6 +17,7 @@ const database = client.db(dbName);
 const submission = database.collection('form');
 const animal = database.collection('pets');
 
+
 // trying to fix error in terminal
 client.connect(err => {
     const collection = client.db("testdatab").collection("form");
@@ -101,8 +102,12 @@ app.post('/result', async (req, res, next) => {
 
 
 // when an user is calling an unknow file, an error occurs
-app.use((req, res) => {
-    res.status(404).send("404, error")
+// app.use((req, res) => {
+//     res.status(404).send("404, error")
+//   })
+
+app.use(function (req, res, next) {
+    res.status(404).render('view/404page')
   })
   
   // 4000 shows in the console to let know it works
