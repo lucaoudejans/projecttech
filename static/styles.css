@@ -44,7 +44,6 @@ form{
     margin-left: 18em;
     border-radius: 2em;
     border: 0.3em solid #ebeaea;
-    height: 48em;
 }
 
 section:nth-of-type(1){
@@ -99,7 +98,7 @@ section:nth-of-type(4){
 section:nth-of-type(5){
     display: flex;
     justify-content: center;
-    margin-top: 2em;
+    padding: 2em;
 }
 
 main button{
