@@ -1,9 +1,9 @@
 # PawfectMatch 🐾
 ## Tabel of contents
-* [Concept](##💡Concept)
-* [Installation](##👾Installation)
-* [License](##📝License)
-* [Sources](##🕸️Sources)
+* ##💡Concept##
+* ##👾Installation##
+* ##📝License##
+* ##🕸️Sources##
 
 ## 💡Concept
 This is a repository for my project thath I'm working on for school. I'm focussing on making a **feature**  that matches the preferences from the user to a pet that's up for adoption. With the aid of front-end and back-end I'm making this happen. For further information I suggest you check out my [Wiki!](https://github.com/lucaoudejans/projecttech/wiki)
