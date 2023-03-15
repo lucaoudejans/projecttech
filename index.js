@@ -1,3 +1,4 @@
+// special thanks to the teachers, studentassistants and fellow students for giving advice and helping me with my work
 // hidden in env
 require('dotenv').config()
 
