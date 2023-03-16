@@ -1,4 +1,5 @@
 // special thanks to the teachers, studentassistants and fellow students for giving advice and helping me with my work
+
 // hidden in env
 require('dotenv').config()
 
@@ -9,7 +10,7 @@ const app = express()
 // express listens to the port. 4000 shows in console
 const port = 4000
 
-// connecting mongoDB connect
+// connecting mongoDB account with database 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.MONGODB_URI
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 })
@@ -19,10 +20,10 @@ const submission = database.collection('form')
 const animal = database.collection('pets')
 
 
-// trying to fix error in terminal
+// connecting a specific datbase with the collection form
 client.connect(err => {
     const collection = client.db("testdatab").collection("form")
-    // perform actions on the collection object
+// when the connection fails, show error
     console.log('error')
     client.close()
   });
@@ -30,16 +31,15 @@ client.connect(err => {
 // import ejs view engine 
 app.set('view engine', 'ejs')
 
-// parses form data and can nest it
+// express middleware to help with HTTP requests for node.js
 app.use(express.urlencoded({extended: true}))
 
-// middleware serves the static files. Alle requests that starts with /static will 
-// be delivered with files from the directory ./static
+// express uses the map static to 
 app.use('/static/', express.static('./static'))
 
-// dynamic view is being viewed
+// starting the view engine for ejs files
 app.set('view engine', 'ejs')
-// is looking for view templates in the view map
+// is looking for a view map with ejs files
 app.set('views', 'view')
 
 // all pages
@@ -58,6 +58,7 @@ app.post('/result', async (req, res, next) => {
         }
         await submission.insertOne(petList)
 
+        // to check if the servers connects and if the data is incorperated correctly
         console.log(req.body)
 
         // based on the answers the user will be paired with an animal
