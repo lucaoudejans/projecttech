@@ -12,19 +12,19 @@ const port = 4000
 // connecting mongoDB connect
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.MONGODB_URI
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 })
 const dbName = 'testdatab'
 const database = client.db(dbName);
-const submission = database.collection('form');
-const animal = database.collection('pets');
+const submission = database.collection('form')
+const animal = database.collection('pets')
 
 
 // trying to fix error in terminal
 client.connect(err => {
-    const collection = client.db("testdatab").collection("form");
+    const collection = client.db("testdatab").collection("form")
     // perform actions on the collection object
     console.log('error')
-    client.close();
+    client.close()
   });
 
 // import ejs view engine 
@@ -35,7 +35,7 @@ app.use(express.urlencoded({extended: true}))
 
 // middleware serves the static files. Alle requests that starts with /static will 
 // be delivered with files from the directory ./static
-app.use('/static/', express.static('./static'));
+app.use('/static/', express.static('./static'))
 
 // dynamic view is being viewed
 app.set('view engine', 'ejs')
@@ -45,8 +45,8 @@ app.set('views', 'view')
 // all pages
 // calling ejs and returning in html
 app.get('/', function(req, res) {
-    res.render('index.ejs');
-  });
+    res.render('index.ejs')
+  })
 
 // the data from the form will be showed in mongodb whenever someone fills in the form
 app.post('/result', async (req, res, next) => {
@@ -86,7 +86,7 @@ app.post('/result', async (req, res, next) => {
             // to prevent empty results in the database
             if(resultPet.length  < 1) {
                 res.send('no results')
-                return false;
+                return false
             }
             // ejs page loads in with the results
             res.render('result', {resultPet, petList})
@@ -100,11 +100,12 @@ app.post('/result', async (req, res, next) => {
     }
     
 })
+
   
 // 4000 shows in the console to let know it works
   app.listen(port, () => {
     console.log(`Server listening on port ${port}`)
-  });
+  })
 
 // when an user is calling an unknow url, an error occurs
   app.use(function (req, res, next) {
