@@ -25,8 +25,7 @@ client.connect(err => {
     const collection = client.db("testdatab").collection("form")
 // when the connection fails, show error
     console.log('error')
-    client.close()
-  });
+  })
 
 // import ejs view engine 
 app.set('view engine', 'ejs')
